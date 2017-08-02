@@ -1,0 +1,16 @@
+#!/bin/bash
+
+function stopTpeap {
+  echo "Stopping tpeap.."
+  /opt/tplink/EAPController/bin/control.sh stop
+  exit
+}
+
+trap stopTpeap EXIT
+
+echo "Starting tpeap.."
+/opt/tplink/EAPController/bin/control.sh start
+
+while true; do
+  sleep 8
+done
