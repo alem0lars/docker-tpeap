@@ -1,13 +1,14 @@
 #!/bin/bash
 
 function stopTpeap {
-  /opt/tplink/EAPController/bin/control.sh stop > /dev/null 2>&1
+  /opt/tplink/EAPController/bin/control.sh stop
   exit
 }
 
 trap stopTpeap EXIT
 
-/opt/tplink/EAPController/bin/control.sh start > /dev/null 2>&1
+echo "Starting tp-link EAP controller (ignore fake msg 'Start failed.').." 1>&2
+/opt/tplink/EAPController/bin/control.sh start
 
 while true; do
   sleep 8
