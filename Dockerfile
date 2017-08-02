@@ -5,6 +5,7 @@ MAINTAINER Alessandro Molari <molari.alessandro@gmail.com>
 # == ENTRYPOINT ================================================================
 
 EXPOSE 8088
+EXPOSE 8043
 
 # Use baseimage-docker's init system.
 CMD ["/sbin/my_init"]

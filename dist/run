@@ -1,15 +1,26 @@
 #!/bin/bash
 
 function stopTpeap {
-  echo "Stopping tpeap.."
   /opt/tplink/EAPController/bin/control.sh stop
   exit
 }
 
 trap stopTpeap EXIT
 
-echo "Starting tpeap.."
-/opt/tplink/EAPController/bin/control.sh start
+echo "Starting tp-link EAP controller (may take a while).."
+/opt/tplink/EAPController/bin/control.sh start > /dev/null 2>&1
+
+while true; do
+  _expected_msg="EAP Controller is running."
+  _status=$(tpeap status)
+  if [[ "$_status" = "$_expected_msg" ]]; then
+    echo "EAP Controller successfully started!"
+    break
+  fi
+  unset _expected_msg
+  unset _status
+  sleep 1
+done
 
 while true; do
   sleep 8
