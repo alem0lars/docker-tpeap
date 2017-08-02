@@ -1,6 +1,6 @@
 # docker-tpeap
 
-Minimal installation of tp-link EAP controller.
+Lightweight tp-link EAP controller on top of baseimage.
 
 ## Version
 
